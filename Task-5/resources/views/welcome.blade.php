@@ -9,12 +9,12 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
-    <title>CRUD Operation </title>
+    <title>CURD Operations</title>
 </head>
 
 <body>
     <div class="container mt-5">
-        <h1 class="text-center">Todo List</h1>
+        <h1 class="text-center">TODO List</h1>
         <hr>
         <div class="row">
             <div class="col-10">
@@ -22,10 +22,11 @@
                 <table class="table table-bordered">
                     <tr>
                         <th>Sl</th>
-                        <th>Image </th>
                         <th>Name</th>
+                        <th>Age</th>
+                        <th>Roll</th>
+                        <th>Subject</th>
                         <th>Department</th>
-                        <th>Company Name</th>
                         <th>Actions</th>
                     </tr>
                     <tbody id="tbody">
@@ -35,21 +36,22 @@
             </div>
 
             <div class="col-2">
+                {{-- <h4>Add New Category</h4> --}}
                 <button id="showFormButton" class="btn btn-sm btn-block btn-success" data-toggle="modal"
-                    data-target="#addNew">
-                    Add New
+                    data-target="#addNewCategoryModal">
+                    Add New Student
                 </button>
             </div>
 
         </div>
     </div>
     <!-- Modal for Add new Student-->
-    <div class="modal fade" id="addNew" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="addNewCategoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add New</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Add New Student</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -57,17 +59,19 @@
                 <div class="modal-body">
                     <form id="addNewDataForm">
                         <div class="form-group">
-                            <input type="text" class="form-control" id="name" placeholder="Name">
+                            <input type="text" class="form-control" id="name" placeholder="Student Name">
                             <span id="error" class="text-danger"></span> <br>
-                            <input type="text" class="form-control" id="subject" placeholder="Company Name">
+                            <input type="text" class="form-control" id="age" placeholder="Age">
+                            <span id="error" class="text-danger"></span> <br>
+                            <input type="text" class="form-control" id="roll" placeholder="Roll">
+                            <span id="error" class="text-danger"></span> <br>
+                            <input type="text" class="form-control" id="subject" placeholder="Subject">
                             <span id="error" class="text-danger"></span> <br>
                             <input type="text" class="form-control" id="department" placeholder="Department">
                             <span id="error" class="text-danger"></span>
-                            <input type="file" class="form-control" id="image" placeholder="Image">
-                            <span id="error" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-sm btn-block btn-success" type="submit">Submit</button>
+                            <button class="btn btn-sm btn-block btn-success" type="submit">Add New Student</button>
                         </div>
                     </form>
                 </div>
@@ -88,22 +92,25 @@
                 <div class="modal-body">
                     <form id="editDataForm">
                         <div class="form-group">
-                            <input type="text" class="form-control" id="e_name" placeholder="Name">
+                            <input type="text" class="form-control" id="e_name" placeholder="Student Name">
                             <input type="hidden" id="e_id">
                             <span id="error" class="text-danger"></span> <br>
-
-                            <input type="text" class="form-control" id="e_company" placeholder="Company Name">
+                            <input type="text" class="form-control" id="e_age" placeholder="Age">
+                            <input type="hidden" id="e_id">
+                            <span id="error" class="text-danger"></span> <br>
+                            <input type="text" class="form-control" id="e_roll" placeholder="Roll">
+                            <input type="hidden" id="e_id">
+                            <span id="error" class="text-danger"></span> <br>
+                            <input type="text" class="form-control" id="e_subject" placeholder="Subject">
                             <input type="hidden" id="e_id">
                             <span id="error" class="text-danger"></span> <br>
                             <input type="text" class="form-control" id="e_department" placeholder="Department">
                             <input type="hidden" id="e_id">
                             <span id="error" class="text-danger"></span>
-                            <input type="text" class="form-control" id="e_image" placeholder="Image">
-                            <input type="hidden" id="e_id">
-                            <span id="error" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-sm btn-block btn-success" type="submit">Update</button>
+                            <button class="btn btn-sm btn-block btn-success" type="submit">Update Student
+                                Details</button>
                         </div>
                     </form>
                 </div>
@@ -118,7 +125,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Show  Details</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Show Student Data</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -126,16 +133,19 @@
                 <div class="modal-body">
                     <form id="editDataForm">
                         <div class="form-group">
-                            <input type="text" class="form-control" id="s_name" placeholder="Name">
+                            <input type="text" class="form-control" id="s_name" placeholder="Student Name">
                             <input type="hidden" id="s_id">
                             <span id="error" class="text-danger"></span> <br>
-                            <input type="text" class="form-control" id="s_company" placeholder="Company Name">
+                            <input type="text" class="form-control" id="s_age" placeholder="Age">
+                            <input type="hidden" id="s_id">
+                            <span id="error" class="text-danger"></span> <br>
+                            <input type="text" class="form-control" id="s_roll" placeholder="Roll">
+                            <input type="hidden" id="s_id">
+                            <span id="error" class="text-danger"></span> <br>
+                            <input type="text" class="form-control" id="s_subject" placeholder="Subject">
                             <input type="hidden" id="s_id">
                             <span id="error" class="text-danger"></span> <br>
                             <input type="text" class="form-control" id="s_department" placeholder="Department">
-                            <input type="hidden" id="s_id">
-                            <span id="error" class="text-danger"></span>
-                            <input type="text" class="form-control" id="s_image" placeholder="Image">
                             <input type="hidden" id="s_id">
                             <span id="error" class="text-danger"></span>
                         </div>
@@ -165,9 +175,10 @@
                 rows = rows + '<tr>';
                 rows = rows + '<td>' + ++i + '</td>';
                 rows = rows + '<td>' + value.name + '</td>';
-                rows = rows + '<td>' + value.company_name + '</td>';
+                rows = rows + '<td>' + value.age + '</td>';
+                rows = rows + '<td>' + value.roll + '</td>';
+                rows = rows + '<td>' + value.subject + '</td>';
                 rows = rows + '<td>' + value.department + '</td>';
-                rows = rows + '<td>' + value.image + '</td>';
                 rows = rows + '<td data-id="' + value.id + '" class="text-center">';
                 rows = rows + '<a class="btn btn-sm btn-info text-light" id="editRow" data-id="' + value.id +
                     '" data-toggle="modal" data-target="#editModal">Edit</a> ';
@@ -182,7 +193,7 @@
         }
 
         function getAllData() {
-            axios.get("{{ route('/get_all_data') }}")
+            axios.get("{{ route('get-all-cat') }}")
                 .then(function(res) {
                     table_data_row(res.data)
                     console.log(res.data);
@@ -194,19 +205,21 @@
         //store data
         $('body').on('submit', '#addNewDataForm', function(e) {
             e.preventDefault();
-            axios.post("{{ route('todo.store') }}", {
+            axios.post("{{ route('category.store') }}", {
                     name: $('#name').val(),
-                    company_name: $('#company_name').val(),
+                    age: $('#age').val(),
+                    roll: $('#roll').val(),
+                    subject: $('#subject').val(),
                     department: $('#department').val(),
-                    image: $('#image').val(),
                 })
                 .then(function(response) {
                     getAllData();
                     // console.log(response);
                     $('#name').val('');
-                    $('#company_name').val('');
+                    $('#age').val('');
+                    $('#roll').val('');
+                    $('#subject').val('');
                     $('#department').val('');
-                    $('#image').val('');
                     $('#error').text('')
                     Swal.fire({
                         icon: 'success',
@@ -244,7 +257,7 @@
                 reverseButtons: true
             }).then((result) => {
                 if (result.isConfirmed) {
-                    axios.delete(`${url}/todo/${id}`).then(function(r) {
+                    axios.delete(`${url}/category/${id}`).then(function(r) {
                         getAllData();
                         swalWithBootstrapButtons.fire(
                             'Deleted!',
@@ -267,15 +280,16 @@
         //edit
         $('body').on('click', '#editRow', function() {
             let id = $(this).data('id');
-            let edit = url + '/todo' + '/' + id + '/edit'
+            let edit = url + '/category' + '/' + id + '/edit'
             //    console.log(url);
             axios.get(edit)
                 .then(function(res) {
                     //    console.log(res);
                     $('#e_name').val(res.data.name)
-                    $('#e_company').val(res.data.company_name)
+                    $('#e_age').val(res.data.age)
+                    $('#e_roll').val(res.data.roll)
+                    $('#e_subject').val(res.data.subject)
                     $('#e_department').val(res.data.department)
-                    $('#e_image').val(res.data.image)
                     $('#e_id').val(res.data.id)
                 })
         })
@@ -286,12 +300,13 @@
             let data = {
                 id: id,
                 name: $('#e_name').val(),
-                company_name: $('#e_company').val(),
+                age: $('#e_age').val(),
+                roll: $('#e_roll').val(),
+                subject: $('#e_subject').val(),
                 department: $('#e_department').val(),
-                image: $('#e_image').val(),
             }
             // console.log(data);
-            let path = url + '/todo' +  '/' + id
+            let path = url + '/category' + '/' + id
             axios.put(path, data)
                 .then(function(res) {
                     getAllData();
@@ -308,15 +323,16 @@
         $('body').on('click', '#viewRow', function() {
             let id = $(this).data('id');
             // console.log(id);
-            let view = url + '/todo' +  '/' + id; // Adjust the URL as needed
+            let view = url + '/category' + '/' + id; // Adjust the URL as needed
             axios.get(view)
                 .then(function(res) {
                     console.log(res);
                     // Fill in the modal with data from the response
                     $('#s_name').val(res.data.name);
-                    $('#s_company').val(res.data.company_name);
+                    $('#s_age').val(res.data.age);
+                    $('#s_roll').val(res.data.roll);
+                    $('#s_subject').val(res.data.subject);
                     $('#s_department').val(res.data.department);
-                    $('#s_image').val(res.data.image);
                     $('#s_id').val(res.data.id)
 
                     // Show the modal

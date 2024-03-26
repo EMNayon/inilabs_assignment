@@ -2,25 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Todo;
+use App\Http\Requests\CategoryRequest;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
-class TodoController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-    //     $todo =  Todo::latest()->get();
-    //     return view('welcome', $todo);
-
-    //     $data = YourModel::all(); // Fetch your data using Eloquent ORM or any other method
-    // return response()->json($data);
+        //
     }
-
-    public function getAllData(){
-        return Todo::latest()->get();
+    public function getAllCat(){
+        return Category::latest()->get();
     }
 
     /**
@@ -34,10 +30,10 @@ class TodoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Todo $request)
+    public function store(CategoryRequest $request)
     {
         $data =  $request->validated();
-        Todo::create($data);
+        Category::create($data);
         // dd($data);
         return 1;
     }
@@ -47,7 +43,7 @@ class TodoController extends Controller
      */
     public function show(string $id)
     {
-        return Todo::find($id);
+        return Category::find($id);
     }
 
     /**
@@ -55,7 +51,7 @@ class TodoController extends Controller
      */
     public function edit(string $id)
     {
-        return Todo::find($id);
+        return Category::find($id);
     }
 
     /**
@@ -63,14 +59,16 @@ class TodoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $todo = Todo::find($id);
-        $todo->name = $request->name;
-        $todo->company_name = $request->company_name;
-        $todo->department = $request->department;
-        $todo->image = $request->image;
+        $cat = Category::find($id);
+        $cat->name = $request->name;
+        $cat->age = $request->age;
+        $cat->roll = $request->roll;
+        $cat->subject = $request->subject;
+        $cat->department = $request->department;
 
-        $todo->save();
-        return "Ok";
+        // dd($cat);
+        $cat->save();
+        return 'ok';
     }
 
     /**
@@ -78,7 +76,7 @@ class TodoController extends Controller
      */
     public function destroy(string $id)
     {
-        Todo::find($id)->delete();
-        return "Ok";
+        Category::find($id)->delete();
+        return 'OK';
     }
 }
